@@ -1,0 +1,104 @@
+import { motion } from "motion/react";
+import { Code2, Database, Layout, GitBranch, Palette, Globe, Server, Smartphone, Package, Terminal, Braces, FileCode, Box, Network } from "lucide-react";
+
+const skillCategories = [
+  {
+    category: "Programming Languages",
+    skills: [
+      { name: "Java", icon: Code2 },
+      { name: "Python", icon: Terminal },
+      { name: "JavaScript", icon: Braces },
+      { name: "HTML/CSS", icon: Layout },
+      { name: "PHP", icon: FileCode },
+      { name: "SQL", icon: Database },
+    ],
+  },
+  {
+    category: "Frameworks & Tools",
+    skills: [
+      { name: "Swing", icon: Code2 },
+      { name: "Tkinter", icon: Terminal },
+      { name: "MySQL", icon: Database },
+      { name: "Git/GitHub", icon: GitBranch },
+      { name: "Docker", icon: Box },
+      { name: "Oracle SQL*Plus", icon: Database },
+    ],
+  },
+  {
+    category: "Skills & Design",
+    skills: [
+      { name: "OOP", icon: Code2 },
+      { name: "Web Dev", icon: Globe },
+      { name: "Responsive", icon: Smartphone },
+      { name: "UI/UX", icon: Palette },
+      { name: "Databases", icon: Network },
+      { name: "Problem Solving", icon: Server },
+    ],
+  },
+];
+
+export function Skills() {
+  return (
+    <section id="skills" className="py-24 bg-white">
+      <div className="max-w-7xl mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            Skills & Technologies
+          </h2>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            My technical toolkit for bringing ideas to life
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          {skillCategories.map((category, categoryIndex) => (
+            <motion.div
+              key={category.category}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
+              className="bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-2xl border border-purple-100"
+            >
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                {category.category}
+              </h3>
+              <div className="grid grid-cols-2 gap-4">
+                {category.skills.map((skill, skillIndex) => {
+                  const Icon = skill.icon;
+                  return (
+                    <motion.div
+                      key={skill.name}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{
+                        duration: 0.4,
+                        delay: categoryIndex * 0.1 + skillIndex * 0.05,
+                      }}
+                      whileHover={{ scale: 1.1, y: -5 }}
+                      className="flex flex-col items-center gap-3 p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer group"
+                    >
+                      <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center group-hover:rotate-6 transition-transform">
+                        <Icon className="text-white" size={24} />
+                      </div>
+                      <span className="text-gray-700 font-medium text-sm text-center">
+                        {skill.name}
+                      </span>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
